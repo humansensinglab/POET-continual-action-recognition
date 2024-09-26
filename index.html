@@ -1,470 +1,315 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-  <meta charset="utf-8">
-  <meta name="description"
-        content="POET: Prompt Offset Tuning for Continual Human Action Adaptation.">
-  <meta name="keywords" content="Continual learning, human action recognition, few-shot learning, extnded reality">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>POET: Prompt Offset Tuning for Continual Human Action Adaptations</title>
+    <meta charset="utf-8">
+    <meta name="description" content="POET: Prompt Offset Tuning for Continual Human Action Adaptation.">
+    <meta name="keywords" content="Continual learning, human action recognition, few-shot learning, extended reality">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>POET: Prompt Offset Tuning for Continual Human Action Adaptation</title>
 
-  <!-- Global site tag (gtag.js) - Google Analytics -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYVRSFMDRL"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
 
-    function gtag() {
-      dataLayer.push(arguments);
-    }
+        function gtag() {
+            dataLayer.push(arguments);
+        }
 
-    gtag('js', new Date());
+        gtag('js', new Date());
 
-    gtag('config', 'G-PYVRSFMDRL');
-  </script>
+        gtag('config', 'G-PYVRSFMDRL');
+    </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro"
-        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+    <link rel="stylesheet" href="./static/css/bulma.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+    <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+    <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+    <link rel="stylesheet" href="./static/css/index.css">
+    <link rel="stylesheet" href="https://use.typekit.net/iag3ven.css">
+    <link rel="icon" href="./static/images/favicon.svg">
 
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="./static/css/fontawesome.all.min.css">
-  <link rel="stylesheet"
-        href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
-  <link rel="icon" href="./static/images/favicon.svg">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script defer src="./static/js/fontawesome.all.min.js"></script>
+    <script src="./static/js/bulma-carousel.min.js"></script>
+    <script src="./static/js/bulma-slider.min.js"></script>
+    <script src="./static/js/index.js"></script>
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script defer src="./static/js/fontawesome.all.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+    <style>
+        /* Applying smaller font size to the abstract and setting fonts to Georgia and Garamond */
+        .abstract-text {
+            font-size: 16px;
+            font-family: 'Georgia', 'Garamond', serif;
+        }
+
+        .section-header {
+            font-size: 1.5rem;
+            font-family: 'Georgia', 'Garamond', serif;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Styling for the subsection */
+        .benchmark-section {
+        background-color: #f0f0f0; /* Light gray background */
+        padding: 20px;
+        font-size: 14px; /* Setting font size to 14px */
+        }
+
+        .benchmark-section h2 {
+        font-size: 1.5rem;
+        font-weight: bold;
+        }
+
+            /* Image gallery styling to fit images in a row */
+        .image-gallery {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 10px; /* Space between images */
+        }
+
+        /* Resize the images to fit within the container */
+        .image-gallery img {
+            max-width: 23%; /* Ensures four images fit in one row */
+            height: auto;
+            border-radius: 8px;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .image-gallery img {
+                max-width: 48%; /* Two images per row on smaller screens */
+            }
+        }
+
+        @media (max-width: 480px) {
+            .image-gallery img {
+                max-width: 100%; /* Full width images on mobile screens */
+            }
+        }
+
+        /* New styles for author names and affiliations */
+        .author-block, .affiliation-block {
+            font-family: 'Georgia', sans-serif;
+        }
+
+        .affiliation-block {
+            margin-right: 15px;
+        }
+
+        .list-item {
+        list-style: "⦿ ";
+        margin-left: 1.5rem;
+        }
+
+    </style>
 </head>
+
 <body>
 
-<!-- <nav class="navbar" role="navigation" aria-label="main navigation">
-  <div class="navbar-brand">
-    <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-      <span aria-hidden="true"></span>
-    </a>
-  </div>
-  <div class="navbar-menu">
-    <div class="navbar-start" style="flex-grow: 1; justify-content: center;">
-      <a class="navbar-item" href="https://keunhong.com">
-      <span class="icon">
-          <i class="fas fa-home"></i>
-      </span>
-      </a>
+    <section class="hero">
+        <div class="hero-body">
+            <div class="container is-max-desktop">
+                <div class="columns is-centered">
+                    <div class="column has-text-centered">
+                        <h1 class="title is-1 publication-title">POET: Prompt Offset Tuning for Continual Human Action
+                            Adaptation</h1>
+                        <div class="is-size-5 publication-authors">
+                            <span class="author-block">
+                                <a href="https://prachigarg23.github.io/">Prachi Garg</a><sup>1</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://josephkj.in/">Joseph K J</a><sup>3</sup>,</span>
+                            <span class="author-block">
+                                <a href="https://people.iith.ac.in/vineethnb/">Vineeth N
+                                    Balasubramanian</a><sup>3</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://www.cihancamgoz.com/">Necati Cihan Camgoz</a><sup>2</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://scholar.google.ch/citations?user=bm5dZwIAAAAJ&hl=en">Chengde
+                                    Wan</a><sup>2</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://www.linkedin.com/in/kenrick-kin-51575753">Kenrick Kin</a><sup>2</sup>,
+                            </span>
+                            <span class="author-block">
+                                <a href="https://scholar.google.com/citations?user=QivUtBIAAAAJ&hl=en">Weiguang
+                                    Si</a><sup>2</sup>
+                            </span>
+                            <span class="author-block">
+                                <a href="https://shugaoma.github.io/">Shugao Ma</a><sup>2</sup>
+                            </span>
+                            <span class="author-block">
+                                <a href="https://www.cs.cmu.edu/~ftorre/">Fernando De La Torre</a><sup>1</sup>
+                            </span>
+                        </div>
 
-      <div class="navbar-item has-dropdown is-hoverable">
-        <a class="navbar-link">
-          More Research
-        </a>
-        <div class="navbar-dropdown">
-          <a class="navbar-item" href="https://hypernerf.github.io">
-            HyperNeRF
-          </a>
-          <a class="navbar-item" href="https://nerfies.github.io">
-            Nerfies
-          </a>
-          <a class="navbar-item" href="https://latentfusion.github.io">
-            LatentFusion
-          </a>
-          <a class="navbar-item" href="https://photoshape.github.io">
-            PhotoShape
-          </a>
+                        <div class="is-size-5 publication-authors">
+                            <span class="affiliation-block"><sup>1</sup>Carnegie Mellon University</span>
+                            <span class="affiliation-block"><sup>2</sup>Meta</span>
+                            <span class="affiliation-block"><sup>3</sup>Indian Institute of Technology Hyderabad</span>
+                        </div>
+
+                        <p style="padding: 12.5px;" />
+                        <h1 class="conference">
+                            ECCV 2024, Oral Presentation
+                        </h1>
+                        <p style="padding: 10px;" />
+
+                        <div class="column has-text-centered">
+                            <div class="publication-links">
+                                <!-- PDF Link. -->
+                                <span class="link-block">
+                                    <a href="http://www.humansensing.cs.cmu.edu/sites/default/files/final_ECCV_POET_complete.pdf"
+                                        class="external-link button is-normal is-rounded is-dark">
+                                        <span class="icon">
+                                            <i class="fas fa-file-pdf"></i>
+                                        </span>
+                                        <span>Paper</span>
+                                    </a>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-      </div>
-    </div>
+    </section>
 
-  </div>
-</nav> -->
+    <section class="hero teaser">
+        <div class="container is-max-desktop">
+            <div class="hero-body">
+                <video id="teaser" autoplay muted loop playsinline height="100%">
+                    <source src="./static/videos/full_teaser_system.mp4" type="video/mp4">
+                </video>
+                <h2 class="subtitle has-text-centered">
+                    <span class="dnerf">POET enables users to personalize their experience by adding new action classes
+                        efficiently and continually whenever they want.</span>
+                </h2>
+            </div>
+        </div>
+    </section>
 
+    <section class="section">
+        <div class="container is-max-desktop">
+            <!-- Abstract. -->
+            <div class="columns is-centered has-text-centered">
+                <div class="column is-four-fifths">
+                    <h2 class="title is-3">Abstract</h2>
+                    <div class="content has-text-justified abstract-text">
+                        <p>
+                            As extended reality (XR) is redefining how users interact with computing devices, research
+                            in human action recognition
+                            is gaining prominence. Typically, models deployed on immersive computing devices are static
+                            and limited to their default
+                            set of classes.
+                        </p>
+                        <p>
+                            The goal of our research is to provide users and developers with the capability to
+                            personalize their
+                            experience by adding new action classes to their device models continually. Importantly, a
+                            user should be able to add new classes in a low-shot and efficient manner, while this
+                            process should not
+                            require storing or replaying any of user's sensitive training data. We formalize this
+                            problem as privacy-aware few-shot
+                            continual action recognition.
+                        </p>
+                        <p>
+                            Towards this end, we propose <b>POET</b>:<b>P</b>rompt <b>O</b>ffs<b>e</b>t <b>T</b>uning.
+                            While existing prompt tuning approaches have
+                            shown great promise for continual learning of image, text, and video modalities; they demand
+                            access to extensively
+                            pretrained transformers. Breaking away from this assumption, POET demonstrates the efficacy
+                            of prompt tuning a
+                            significantly lightweight backbone, pretrained exclusively on the base class data. We
+                            propose a novel spatio-temporal
+                            learnable prompt offset tuning approach, and are the first to apply such prompt tuning to
+                            <i>Graph Neural
+                                Networks</i>.
+                        </p>
+                        <p>
+                            We contribute two new benchmarks for our new problem setting in human action recognition:
+                            (i) NTU RGB+D
+                            dataset for activity recognition, and (ii) SHREC-2017 dataset for hand gesture recognition.
+                            We find that POET
+                            consistently outperforms comprehensive benchmarks.
+                        </p>
+                    </div>
+                </div>
+            </div>
+            <!--/ Abstract. -->
+        </div>
+    </section>
 
-<section class="hero">
-  <div class="hero-body">
-    <div class="container is-max-desktop">
-      <div class="columns is-centered">
-        <div class="column has-text-centered">
-          <h1 class="title is-1 publication-title">POET: Prompt Offset Tuning for Continual Human Action Adaptation</h1>
-          <div class="is-size-5 publication-authors">
-            <span class="author-block">
-              <a href="https://keunhong.com">Prachi Garg</a><sup>1</sup>,</span>
-            <span class="author-block">
-              <a href="https://utkarshsinha.com">Joseph K J</a><sup>3</sup>,</span>
-            <span class="author-block">
-              <a href="https://jonbarron.info">Vineeth N Balasubramanian</a><sup>3</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://sofienbouaziz.com">Necati Cihan Camgoz</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://www.danbgoldman.com">Chengde Wan</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="https://homes.cs.washington.edu/~seitz/">Kenrick Kin</a><sup>2</sup>,
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Weiguang Si</a><sup>2</sup>
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Shugao Ma</a><sup>2</sup>
-            </span>
-            <span class="author-block">
-              <a href="http://www.ricardomartinbrualla.com">Fernando De La Torre</a><sup>1</sup>
-            </span>
-          </div>
-
-          <div class="is-size-5 publication-authors">
-            <span class="author-block"><sup>1</sup>Carnegie Mellon University</span>
-            <span class="author-block"><sup>3</sup>Indian Institute of Technology Hyderabad</span>
-            <span class="author-block"><sup>2</sup>Meta</span>
-          </div>
-
-          <div class="column has-text-centered">
-            <div class="publication-links">
-              <!-- PDF Link. -->
-              <span class="link-block">
-                <a href="http://www.humansensing.cs.cmu.edu/sites/default/files/final_ECCV_POET_complete.pdf"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fas fa-file-pdf"></i>
-                  </span>
-                  <span>Paper</span>
-                </a>
-              </span>
-              <!-- Code Link. -->
-              <!-- <span class="link-block">
-                <a href="https://github.com/google/nerfies"
-                   class="external-link button is-normal is-rounded is-dark">
-                  <span class="icon">
-                      <i class="fab fa-github"></i>
-                  </span>
-                  <span>Code</span>
-                  </a>
-              </span> -->
+    <!-- New Section: Activity Recognition Benchmark -->
+    <section class="section benchmark-section">
+        <div class="container is-max-desktop">
+            <!-- Image Row -->
+            <h2 class="section-header">Activity Recognition Benchmark</h2>
+            <div class="image-gallery">
+                <img src="./static/images/ntu1_avg_performance.png" alt="Image 1">
+                <img src="./static/images/ntu1_old_performance.png" alt="Image 2">
+                <img src="./static/images/ntu1_new_performance.png" alt="Image 3">
+                <img src="./static/images/ntu1_hm_performance.png" alt="Image 4">
+            </div>
+    
+            <!-- Content Section -->
             
+            <div class="content">
+                <ul>
+                    <li class="list-item">Fine-tune & LWF don’t freeze the feature extractor in t>0. Entire model overfits
+                        to few-shots, leading to almost complete forgetting.</li>
+                    <li class="list-item">SOTA continual prompt tuning works. L2P, CODA-P fail to learn new classes. They
+                        are designed for image classification, update using full supervision, assume ViT pretrained on
+                        ImageNet21k.</li>
+                    <li class="list-item">POET significantly outperforms upper bounds on new & is competitive on old. Best
+                        stability-plasticity trade-off (HM graph).</li>
+                    <li class="list-item">We show comparison with replay methods that violate privacy. FE+Replay is freezing
+                        backbone + rehearsal of stored training data. POET learns New better. (Right) Removing prompts from
+                        POET gives Feature Extraction (FE) – this is simply frozen feature extractor with expanding linear
+                        classifier. Prompt offsets retain intermediate class performance.</li>
+                </ul>
             </div>
-
-          </div>
         </div>
-      </div>
-    </div>
-  </div>
-</section>
+    </section>
 
-<section class="hero teaser">
-  <div class="container is-max-desktop">
-    <div class="hero-body">
-      <video id="teaser" autoplay muted loop playsinline height="100%">
-        <source src="./static/videos/teaser.mp4"
-                type="video/mp4">
-      </video>
-      <h2 class="subtitle has-text-centered">
-        <span class="dnerf">Nerfies</span> turns selfie videos from your phone into
-        free-viewpoint
-        portraits.
-      </h2>
-    </div>
-  </div>
-</section>
-
-
-<section class="hero is-light is-small">
-  <div class="hero-body">
-    <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-steve">
-          <video poster="" id="steve" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/steve.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-chair-tp">
-          <video poster="" id="chair-tp" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/chair-tp.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-shiba">
-          <video poster="" id="shiba" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/shiba.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-fullbody">
-          <video poster="" id="fullbody" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/fullbody.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-blueshirt">
-          <video poster="" id="blueshirt" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/blueshirt.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-mask">
-          <video poster="" id="mask" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/mask.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-coffee">
-          <video poster="" id="coffee" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/coffee.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-toby">
-          <video poster="" id="toby" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/toby2.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-    <!-- Abstract. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Abstract</h2>
-        <div class="content has-text-justified">
-          <p>
-            We present the first method capable of photorealistically reconstructing a non-rigidly
-            deforming scene using photos/videos captured casually from mobile phones.
-          </p>
-          <p>
-            Our approach augments neural radiance fields
-            (NeRF) by optimizing an
-            additional continuous volumetric deformation field that warps each observed point into a
-            canonical 5D NeRF.
-            We observe that these NeRF-like deformation fields are prone to local minima, and
-            propose a coarse-to-fine optimization method for coordinate-based models that allows for
-            more robust optimization.
-            By adapting principles from geometry processing and physical simulation to NeRF-like
-            models, we propose an elastic regularization of the deformation field that further
-            improves robustness.
-          </p>
-          <p>
-            We show that <span class="dnerf">Nerfies</span> can turn casually captured selfie
-            photos/videos into deformable NeRF
-            models that allow for photorealistic renderings of the subject from arbitrary
-            viewpoints, which we dub <i>"nerfies"</i>. We evaluate our method by collecting data
-            using a
-            rig with two mobile phones that take time-synchronized photos, yielding train/validation
-            images of the same pose at different viewpoints. We show that our method faithfully
-            reconstructs non-rigidly deforming scenes and reproduces unseen views with high
-            fidelity.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Abstract. -->
-
-    <!-- Paper video. -->
-    <div class="columns is-centered has-text-centered">
-      <div class="column is-four-fifths">
-        <h2 class="title is-3">Video</h2>
-        <div class="publication-video">
-          <iframe src="https://www.youtube.com/embed/MrKrnHhk8IA?rel=0&amp;showinfo=0"
-                  frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-        </div>
-      </div>
-    </div>
-    <!--/ Paper video. -->
-  </div>
-</section>
-
-
-<section class="section">
-  <div class="container is-max-desktop">
-
-    <div class="columns is-centered">
-
-      <!-- Visual Effects. -->
-      <div class="column">
-        <div class="content">
-          <h2 class="title is-3">Visual Effects</h2>
-          <p>
-            Using <i>nerfies</i> you can create fun visual effects. This Dolly zoom effect
-            would be impossible without nerfies since it would require going through a wall.
-          </p>
-          <video id="dollyzoom" autoplay controls muted loop playsinline height="100%">
-            <source src="./static/videos/dollyzoom-stacked.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-      </div>
-      <!--/ Visual Effects. -->
-
-      <!-- Matting. -->
-      <div class="column">
-        <h2 class="title is-3">Matting</h2>
-        <div class="columns is-centered">
-          <div class="column content">
-            <p>
-              As a byproduct of our method, we can also solve the matting problem by ignoring
-              samples that fall outside of a bounding box during rendering.
-            </p>
-            <video id="matting-video" controls playsinline height="100%">
-              <source src="./static/videos/matting.mp4"
-                      type="video/mp4">
-            </video>
-          </div>
-
-        </div>
-      </div>
-    </div>
-    <!--/ Matting. -->
-
-    <!-- Animation. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Animation</h2>
-
-        <!-- Interpolating. -->
-        <h3 class="title is-4">Interpolating states</h3>
-        <div class="content has-text-justified">
-          <p>
-            We can also animate the scene by interpolating the deformation latent codes of two input
-            frames. Use the slider here to linearly interpolate between the left frame and the right
-            frame.
-          </p>
-        </div>
-        <div class="columns is-vcentered interpolation-panel">
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_start.jpg"
-                 class="interpolation-image"
-                 alt="Interpolate start reference image."/>
-            <p>Start Frame</p>
-          </div>
-          <div class="column interpolation-video-column">
-            <div id="interpolation-image-wrapper">
-              Loading...
+    <!-- New Section: Activity Recognition Benchmark -->
+    <section class="section benchmark-section">
+        <div class="container is-max-desktop">
+            <!-- Image Row -->
+            <h2 class="section-header">Gesture Recognition Benchmark</h2>
+            <div class="image-gallery">
+                <img src="./static/images/shrec_avg_performance.png" alt="Image 1">
+                <img src="./static/images/shrec_old_performance.png" alt="Image 2">
+                <img src="./static/images/shrec_new_performance.png" alt="Image 3">
+                <img src="./static/images/shrec_hm_performance.png" alt="Image 4">
             </div>
-            <input class="slider is-fullwidth is-large is-info"
-                   id="interpolation-slider"
-                   step="1" min="0" max="100" value="0" type="range">
-          </div>
-          <div class="column is-3 has-text-centered">
-            <img src="./static/images/interpolate_end.jpg"
-                 class="interpolation-image"
-                 alt="Interpolation end reference image."/>
-            <p class="is-bold">End Frame</p>
-          </div>
+    
+            <!-- Content Section -->
+            
+            <div class="content">
+                <ul>
+                    <li class="list-item">ALICE [3] is a few-shot class-incremental baseline adapted from image classification works. It uses a non-parametric
+                    classifier. It retains old classes well since it doesn’t have an expanding classifier. But it fails to learn new classes
+                    well.</li>
+                    <li class="list-item">POET sets SOTA on the stability-plasticity trade-off metric, Harmonic Mean.</li>
+                    <li class="list-item">This dataset and model is more lightweight than the activity benchmark. Hence, its more plastic to new knowledge and
+                    less stable.</li>
+                    <li class="list-item">In addition to prompts, we mitigate forgetting from the classifier by freezing weights corresponding to previous classes
+                    in the classifier.</li>
+                </ul>
+            </div>
         </div>
-        <br/>
-        <!--/ Interpolating. -->
+    </section>
 
-        <!-- Re-rendering. -->
-        <h3 class="title is-4">Re-rendering the input video</h3>
-        <div class="content has-text-justified">
-          <p>
-            Using <span class="dnerf">Nerfies</span>, you can re-render a video from a novel
-            viewpoint such as a stabilized camera by playing back the training deformations.
-          </p>
-        </div>
-        <div class="content has-text-centered">
-          <video id="replay-video"
-                 controls
-                 muted
-                 preload
-                 playsinline
-                 width="75%">
-            <source src="./static/videos/replay.mp4"
-                    type="video/mp4">
-          </video>
-        </div>
-        <!--/ Re-rendering. -->
-
-      </div>
-    </div>
-    <!--/ Animation. -->
-
-
-    <!-- Concurrent Work. -->
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-3">Related Links</h2>
-
-        <div class="content has-text-justified">
-          <p>
-            There's a lot of excellent work that was introduced around the same time as ours.
-          </p>
-          <p>
-            <a href="https://arxiv.org/abs/2104.09125">Progressive Encoding for Neural Optimization</a> introduces an idea similar to our windowed position encoding for coarse-to-fine optimization.
-          </p>
-          <p>
-            <a href="https://www.albertpumarola.com/research/D-NeRF/index.html">D-NeRF</a> and <a href="https://gvv.mpi-inf.mpg.de/projects/nonrigid_nerf/">NR-NeRF</a>
-            both use deformation fields to model non-rigid scenes.
-          </p>
-          <p>
-            Some works model videos with a NeRF by directly modulating the density, such as <a href="https://video-nerf.github.io/">Video-NeRF</a>, <a href="https://www.cs.cornell.edu/~zl548/NSFF/">NSFF</a>, and <a href="https://neural-3d-video.github.io/">DyNeRF</a>
-          </p>
-          <p>
-            There are probably many more by the time you are reading this. Check out <a href="https://dellaert.github.io/NeRF/">Frank Dellart's survey on recent NeRF papers</a>, and <a href="https://github.com/yenchenlin/awesome-NeRF">Yen-Chen Lin's curated list of NeRF papers</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-    <!--/ Concurrent Work. -->
-
-  </div>
-</section>
-
-
-<section class="section" id="BibTeX">
-  <div class="container is-max-desktop content">
-    <h2 class="title">BibTeX</h2>
-    <pre><code>@article{park2021nerfies,
-  author    = {Park, Keunhong and Sinha, Utkarsh and Barron, Jonathan T. and Bouaziz, Sofien and Goldman, Dan B and Seitz, Steven M. and Martin-Brualla, Ricardo},
-  title     = {Nerfies: Deformable Neural Radiance Fields},
-  journal   = {ICCV},
-  year      = {2021},
-}</code></pre>
-  </div>
-</section>
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="content has-text-centered">
-      <a class="icon-link"
-         href="./static/videos/nerfies_paper.pdf">
-        <i class="fas fa-file-pdf"></i>
-      </a>
-      <a class="icon-link" href="https://github.com/keunhong" class="external-link" disabled>
-        <i class="fab fa-github"></i>
-      </a>
-    </div>
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            This website is licensed under a <a rel="license"
-                                                href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-          <p>
-            This means you are free to borrow the <a
-              href="https://github.com/nerfies/nerfies.github.io">source code</a> of this website,
-            we just ask that you link back to this page in the footer.
-            Please remember to remove the analytics code included in the header of the website which
-            you do not want on your website.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
+    
 
 </body>
+
 </html>
