@@ -107,11 +107,28 @@
         margin-left: 1.5rem;
         }
 
-        .video-container {
+        /* .video-container {
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 20px 0;
+        } */
+
+        .video-container {
+        position: relative;
+        width: 80%;
+        justify-content: center;
+        align-items: center;
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
+        overflow: hidden;
+        }
+
+        .video-container iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
         }
 
     </style>
@@ -215,8 +232,8 @@
         </div>
     </section>
 
-    <p style="text-align: center; padding: 14px;"><b>TL;DR: POET enables users to personalize their experience by adding new action classes
-        efficiently and continually whenever they want.</b></p style="padding: 14px;">
+    <p style="text-align: center; padding: 12.5px;"><b>TL;DR: POET enables users to personalize their experience by adding new action classes
+        efficiently and continually whenever they want.</b></p style="padding: 12.5px;">
 
     <section class="hero teaser">
         <div class="container is-max-desktop">
@@ -231,9 +248,13 @@
     <p style="text-align: center;"><b>ECCV Talk Video</b></p>
 
     <div class="video-container">
-        <iframe width="600" height="360" src="https://www.youtube.com/watch?v=oOK0cglVKQk " frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+        <iframe width="600" height="350" 
+          src="https://www.youtube.com/embed/oOK0cglVKQk" 
+          frameborder="0" 
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+          allowfullscreen>
         </iframe>
-    </div>
+      </div>
 
     <section class="section">
         <div class="container is-max-desktop">
