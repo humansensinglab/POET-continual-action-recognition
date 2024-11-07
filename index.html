@@ -107,23 +107,22 @@
         margin-left: 1.5rem;
         }
 
-        /* .video-container {
+        .video-container {
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         margin: 20px 0;
-        } */
-
-        .video-container {
-        position: relative;
-        width: 80%;
-        justify-content: center;
-        align-items: center;
-        padding-bottom: 56.25%; /* 16:9 aspect ratio */
-        overflow: hidden;
         }
 
-        .video-container iframe {
+        .video-wrapper {
+        width: 80%;
+        max-width: 1200px; /* Optional: sets a maximum width for very large screens */
+        position: relative;
+        padding-bottom: 45%; /* 16:9 aspect ratio */
+        }
+
+        .video-wrapper iframe {
         position: absolute;
         top: 0;
         left: 0;
@@ -248,13 +247,20 @@
     <p style="text-align: center;"><b>ECCV Talk Video</b></p>
 
     <div class="video-container">
+        <div class="video-wrapper">
+          <iframe src="https://www.youtube.com/embed/oOK0cglVKQk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+    <!-- <div class="video-container">
         <iframe width="600" height="350" 
           src="https://www.youtube.com/embed/oOK0cglVKQk" 
           frameborder="0" 
           allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
           allowfullscreen>
         </iframe>
-      </div>
+      </div> -->
 
     <section class="section">
         <div class="container is-max-desktop">
