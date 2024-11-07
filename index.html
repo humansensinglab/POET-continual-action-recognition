@@ -108,7 +108,7 @@
         }
 
         .video-container {
-        width: 80%;
+        width: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
@@ -116,10 +116,10 @@
         }
 
         .video-wrapper {
-        width: 80%;
-        max-width: 1200px; /* Optional: sets a maximum width for very large screens */
+        width: 100%;
+        max-width: 800px; /* This should match the width of your abstract container */
         position: relative;
-        padding-bottom: 25%; /* 16:9 aspect ratio */
+        padding-bottom: 56.25%; /* 16:9 aspect ratio */
         }
 
         .video-wrapper iframe {
@@ -128,6 +128,11 @@
         left: 0;
         width: 100%;
         height: 100%;
+        }
+
+        .abstract-container {
+        max-width: 800px;
+        margin: 0 auto;
         }
 
     </style>
@@ -246,13 +251,26 @@
 
     <p style="text-align: center;"><b>ECCV Talk Video</b></p>
 
-    <div class="video-container">
+    <section class="section">
+        <div class="container is-max-desktop">
+          <div class="columns is-centered">
+            <div class="column is-four-fifths abstract-container">
+              <h2 class="title is-3">Abstract</h2>
+              <div class="content has-text-justified abstract-text">
+                <!-- Abstract content here -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+    <!-- <div class="video-container">
         <div class="video-wrapper">
           <iframe src="https://www.youtube.com/embed/oOK0cglVKQk" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen>
           </iframe>
         </div>
       </div>
-
+ -->
 
     <section class="section">
         <div class="container is-max-desktop">
