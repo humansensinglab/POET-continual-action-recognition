@@ -2,7 +2,7 @@
 
 ### ECCV 2024, Oral Presentation | [Project Page](https://humansensinglab.github.io/POET-continual-action-recognition/)
 
-**Authors: Prachi Garg, K J Joseph, Vineeth N Balasubramanian, Necati Cihan Camgoz, Chengde Wan, Kenrick Kin, Weiguang Si, Shugao Ma, and Fernando De La Torre**
+*Authors: Prachi Garg, K J Joseph, Vineeth N Balasubramanian, Necati Cihan Camgoz, Chengde Wan, Kenrick Kin, Weiguang Si, Shugao Ma, and Fernando De La Torre*
 
 ![method_poet](https://github.com/user-attachments/assets/41c9716f-ee8e-47c2-9cb0-08afc1231f5e)
 
