@@ -7,17 +7,21 @@
 ![method_poet](https://github.com/user-attachments/assets/41c9716f-ee8e-47c2-9cb0-08afc1231f5e)
 
 ## Abstract
-The goal of our research is to provide users and developers with the capability to personalize their experience by adding new action classes to their device models continually. Importantly, a user should be able to add new classes in a low-shot and efficient manner, while this process should not require storing or replaying any of user's sensitive training data. We formalize this problem as privacy-aware few-shot continual action recognition.
+POET enables users to personalize their experience by adding new action classes efficiently and continually whenever they want.
 
-POET demonstrates the efficacy of prompt tuning a significantly lightweight backbone, pretrained exclusively on the base class data. We propose a novel spatio-temporal learnable prompt offset tuning approach, and are the first to apply such prompt tuning to Graph Neural Networks.
+We demonstrate the efficacy of prompt tuning a significantly lightweight backbone, pretrained exclusively on the base class data. We propose a novel spatio-temporal learnable prompt offset tuning approach, and are the first to apply such prompt tuning to Graph Neural Networks.
 
 We contribute two new benchmarks for our new problem setting in human action recognition: (i) NTU RGB+D dataset for activity recognition, and (ii) SHREC-2017 dataset for hand gesture recognition. We find that POET consistently outperforms comprehensive benchmarks.
 
 ## :rocket: **Release Overview and Updates**
-:white_large_square: POET code for Gesture Recognition benchmark on SHREC 2017, prompt offset tuning the DG-STA graph transformer backbone. \
-:white_large_square: I plan to release all 10+1 sets of few-shots for full reproducibility. \
-:white_check_mark: POET training and evaluation code for our Activity Recognition benchmark on NTU RGB+D dataset is now available. We prompt offset tuning the CTR-GCN graph convolutional network backbone. \
-:white_check_mark: Additionally, this release includes (i) the base step model checkpoints, (ii) a few-shot data file. \
+:white_large_square: POET code for Gesture Recognition benchmark on SHREC 2017, prompt offset tuning the DG-STA graph transformer backbone. 
+
+:white_large_square: I plan to release all 10+1 sets of few-shots for full reproducibility. 
+
+:white_check_mark: Released POET training and evaluation code for our Activity Recognition benchmark on NTU RGB+D dataset. We use the CTR-GCN backbone. 
+
+:white_check_mark: Additionally, this release includes (i) the base step model checkpoints, (ii) a few-shot data file. 
+
 - Note, additional code for adaptation of various baselines and ablations can be made available upon request. 
 
 ## Installation
