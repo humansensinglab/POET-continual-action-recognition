@@ -49,6 +49,13 @@ git clone <repository-url>
 
 ## Dataset Preparation
 
+```
+**TL;DR of our continual learning task** -
+ - We divide the 60 daily action classes in NTU RGB+D skeleton action recognition dataset into 40 base classes and 20 incremental classes. We train base model with full supervision and initalize prompts.
+ - We add 5 new classes to the model sequentially, over 4 continual user sessions, each class trained using only 5 training samples. In this, we update only expanded classifier and prompts, prompt keys and query adapter.
+ - Our privacy-aware setting is rehearsal-free and does not store any previous class samples or exemplars.  
+```
+
 1. We had downloaded the NTU RGB+D 60 dataset and preprocessed it following the instructions in the original CTR-GCN repository. Sample few-shot data file is [here](https://uillinoisedu-my.sharepoint.com/:u:/g/personal/prachig3_illinois_edu/ERT-y01R2YFGtkzfWiC5jxUBJtBgaffAzBVm0ntH2fNpLQ?e=bXEoKs).
 
 2. Provide path to data files inside [`temp_24nov.yaml`](https://github.com/humansensinglab/POET-continual-action-recognition/blob/main/config/nturgbd-cross-subject/temp_24nov.yaml) -> feeder -> `data_path` and `few_shot_data_file` variables. 
