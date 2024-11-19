@@ -22,7 +22,7 @@ We contribute two new benchmarks for our new problem setting in human action rec
 
 :white_check_mark: Additionally, this release includes (i) the base step model checkpoints, (ii) a few-shot data file. 
 
-- Note, additional code for adaptation of various baselines and ablations can be made available upon request. 
+:pushpin: Note, additional code for adaptation of various baselines and ablations can be made available upon request. 
 
 ## Installation
 
