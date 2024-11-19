@@ -14,9 +14,9 @@ We demonstrate the efficacy of prompt tuning a significantly lightweight backbon
 We contribute two new benchmarks for our new problem setting in human action recognition: (i) NTU RGB+D dataset for activity recognition, and (ii) SHREC-2017 dataset for hand gesture recognition. 
 
 ## :rocket: **Release Overview and Updates**
-:white_large_square: POET code for Gesture Recognition benchmark on SHREC 2017, prompt offset tuning the DG-STA graph transformer backbone. 
+:white_large_square: Code for Gesture Recognition benchmark on SHREC 2017, DG-STA graph transformer backbone. 
 
-:white_large_square: I plan to release all 10+1 sets of few-shots for full reproducibility. 
+:white_large_square: Plan to release all 10+1 sets of few-shots for full reproducibility soon.
 
 :white_check_mark: Released POET training and evaluation code for our Activity Recognition benchmark on NTU RGB+D dataset. We use the CTR-GCN backbone. 
 
