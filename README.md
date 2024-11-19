@@ -51,7 +51,7 @@ git clone <repository-url>
 
 1. We had downloaded the NTU RGB+D 60 dataset and preprocessed it following the instructions in the original CTR-GCN repository. Sample few-shot data file is [here](https://uillinoisedu-my.sharepoint.com/:u:/g/personal/prachig3_illinois_edu/ERT-y01R2YFGtkzfWiC5jxUBJtBgaffAzBVm0ntH2fNpLQ?e=bXEoKs).
 
-2. Provide path to data files inside [`temp_24nov.yaml`](https://github.com/humansensinglab/POET-continual-action-recognition/blob/main/config/nturgbd-cross-subject/temp_24nov.yaml) -> feeder -> `data_path` and `few_shot_data_file` variables. The preprocessed data should be organized as:
+2. Provide path to data files inside [`temp_24nov.yaml`](https://github.com/humansensinglab/POET-continual-action-recognition/blob/main/config/nturgbd-cross-subject/temp_24nov.yaml) -> feeder -> `data_path` and `few_shot_data_file` variables. 
 
 ## Training
 
