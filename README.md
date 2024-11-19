@@ -11,7 +11,7 @@ POET enables users to personalize their experience by adding new action classes 
 
 We demonstrate the efficacy of prompt tuning a significantly lightweight backbone, pretrained exclusively on the base class data. We propose a novel spatio-temporal learnable prompt offset tuning approach, and are the first to apply such prompt tuning to Graph Neural Networks.
 
-We contribute two new benchmarks for our new problem setting in human action recognition: (i) NTU RGB+D dataset for activity recognition, and (ii) SHREC-2017 dataset for hand gesture recognition. We find that POET consistently outperforms comprehensive benchmarks.
+We contribute two new benchmarks for our new problem setting in human action recognition: (i) NTU RGB+D dataset for activity recognition, and (ii) SHREC-2017 dataset for hand gesture recognition. 
 
 ## :rocket: **Release Overview and Updates**
 :white_large_square: POET code for Gesture Recognition benchmark on SHREC 2017, prompt offset tuning the DG-STA graph transformer backbone. 
