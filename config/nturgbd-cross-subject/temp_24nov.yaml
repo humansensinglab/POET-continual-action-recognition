@@ -1,0 +1,86 @@
+work_dir: work_dir/ntu60/csub/ctrgcn_prompt
+
+save_score: False
+seed:  1
+print_log: True
+show_topk: [1]
+num_worker:  32
+
+# feeder
+feeder: feeders.feeder_ntu_continual.Feeder
+train_feeder_args:
+  data_path: /data/prachi_data/ntu/NTU60_CS.npz
+  few_shot_data_file: /home/prachi/CTR-GCN/data/NTU60_5shots.npz # over ridden by argparser
+  split: train
+  debug: False
+  random_choose: False
+  random_shift: False
+  random_move: False
+  window_size: 64
+  normalization: False
+  random_rot: True
+  p_interval: [0.5, 1]
+  vel: False
+  bone: False
+
+# test feeder
+test_feeder_args:
+  data_path: /data/prachi_data/ntu/NTU60_CS.npz
+  # few_shot_data_file: /home/prachi/NTU60_incvalset_shots.npz
+  few_shot_data_file: /home/prachi/CTR-GCN/data/NTU60_5shots.npz # over ridden by argparser
+  split: test
+  window_size: 64
+  p_interval: [0.95]
+  vel: False
+  bone: False
+  debug: False
+
+# model
+model: model.ctrgcn_prompted_poet.Model
+model_query: model.ctrgcn_queryfn.Model
+model_args:
+  num_point: 25
+  num_person: 2
+  graph: graph.ntu_rgb_d.Graph
+  graph_args:
+    labeling_mode: 'spatial'
+  query:
+    query_lr: 0.01
+    dropout: 0.2
+    fc_adaptor: True
+
+# prompt specific parameters
+prompt:
+    prompt_type: 7
+    prompt_pool: True
+    pool_size: 64
+    prompt_length: 25
+    top_k: 64
+    decouple: False
+    random_k: -1
+    stack_random_before: False
+    freeze_prevtask_prompts: False
+    sort: True
+    random_expand: False
+    force_select_new: False
+    temporal_pe: False
+    prompt_init: uniform
+    prompt_key: True
+    embed_dim: 64
+    embed_dim_prompt: 64
+    prompt_key_init: uniform
+    batchwise_prompt: False
+    embedding_key: query_cls
+
+# optimizer
+weight_decay: 0.0004
+base_lr: 0.1
+lr_decay_rate: 0.1
+step: [35, 55]
+warm_up_epoch: 5
+
+# training
+device: [0]
+start_epoch: 0
+test_batch_size: 64
+nesterov: True

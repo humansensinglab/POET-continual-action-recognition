@@ -1,0 +1,143 @@
+# command line: poet_main.py --config config/nturgbd-cross-subject/temp_24nov.yaml --device 3 --labels_prev_step 45 --maxlabelid_curr_step 50 --k_shot 5 --weights work_dir/ntu60/csub/ctrgcn_prompt/Prompt_POET_multiple_runs_step1-5.pt --query_checkpoint work_dir/ntu60/csub/ctrgcn_prompt/Prompt_POET_multiple_runs_step1-query-5.pt --IL_step 2 --save_name_args Prompt_POET_multiple_runs_step2 --prompt_sim_reg --classifier_average_init --class_order 0 --save_numbers_to_csv --few_shot_data_file /data/prachi_data/few_shot_files/NTU60_5shots_set1.npz --experiment_name POET_ours_16thjuly --train_eval
+
+base_lr: 0.1
+device:
+- 0
+feeder: feeders.feeder_ntu_continual.Feeder
+lr_decay_rate: 0.1
+model: model.ctrgcn_prompted_poet.Model
+model_args: !!python/object/new:easydict.EasyDict
+  dictitems:
+    graph: graph.ntu_rgb_d.Graph
+    graph_args: &id001 !!python/object/new:easydict.EasyDict
+      dictitems:
+        labeling_mode: spatial
+      state:
+        labeling_mode: spatial
+    num_person: 2
+    num_point: 25
+    query: &id002 !!python/object/new:easydict.EasyDict
+      dictitems:
+        dropout: 0.2
+        fc_adaptor: true
+        query_lr: 0.01
+      state:
+        dropout: 0.2
+        fc_adaptor: true
+        query_lr: 0.01
+  state:
+    graph: graph.ntu_rgb_d.Graph
+    graph_args: *id001
+    num_person: 2
+    num_point: 25
+    query: *id002
+model_query: model.ctrgcn_queryfn.Model
+nesterov: true
+num_worker: 32
+print_log: true
+prompt: !!python/object/new:easydict.EasyDict
+  dictitems:
+    batchwise_prompt: false
+    decouple: false
+    embed_dim: 64
+    embed_dim_prompt: 64
+    embedding_key: query_cls
+    force_select_new: false
+    freeze_prevtask_prompts: false
+    pool_size: 64
+    prompt_init: uniform
+    prompt_key: true
+    prompt_key_init: uniform
+    prompt_length: 25
+    prompt_pool: true
+    prompt_type: 7
+    random_expand: false
+    random_k: -1
+    sort: true
+    stack_random_before: false
+    temporal_pe: false
+    top_k: 64
+  state:
+    batchwise_prompt: false
+    decouple: false
+    embed_dim: 64
+    embed_dim_prompt: 64
+    embedding_key: query_cls
+    force_select_new: false
+    freeze_prevtask_prompts: false
+    pool_size: 64
+    prompt_init: uniform
+    prompt_key: true
+    prompt_key_init: uniform
+    prompt_length: 25
+    prompt_pool: true
+    prompt_type: 7
+    random_expand: false
+    random_k: -1
+    sort: true
+    stack_random_before: false
+    temporal_pe: false
+    top_k: 64
+save_score: false
+seed: 1
+show_topk:
+- 1
+start_epoch: 0
+step:
+- 35
+- 55
+test_batch_size: 64
+test_feeder_args: !!python/object/new:easydict.EasyDict
+  dictitems:
+    bone: false
+    data_path: /data/prachi_data/ntu/NTU60_CS.npz
+    debug: false
+    few_shot_data_file: /home/prachi/CTR-GCN/data/NTU60_5shots.npz
+    p_interval: &id003
+    - 0.95
+    split: test
+    vel: false
+    window_size: 64
+  state:
+    bone: false
+    data_path: /data/prachi_data/ntu/NTU60_CS.npz
+    debug: false
+    few_shot_data_file: /home/prachi/CTR-GCN/data/NTU60_5shots.npz
+    p_interval: *id003
+    split: test
+    vel: false
+    window_size: 64
+train_feeder_args: !!python/object/new:easydict.EasyDict
+  dictitems:
+    bone: false
+    data_path: /data/prachi_data/ntu/NTU60_CS.npz
+    debug: false
+    few_shot_data_file: /home/prachi/CTR-GCN/data/NTU60_5shots.npz
+    normalization: false
+    p_interval: &id004
+    - 0.5
+    - 1
+    random_choose: false
+    random_move: false
+    random_rot: true
+    random_shift: false
+    split: train
+    vel: false
+    window_size: 64
+  state:
+    bone: false
+    data_path: /data/prachi_data/ntu/NTU60_CS.npz
+    debug: false
+    few_shot_data_file: /home/prachi/CTR-GCN/data/NTU60_5shots.npz
+    normalization: false
+    p_interval: *id004
+    random_choose: false
+    random_move: false
+    random_rot: true
+    random_shift: false
+    split: train
+    vel: false
+    window_size: 64
+warm_up_epoch: 5
+weight_decay: 0.0004
+work_dir: work_dir/ntu60/csub/ctrgcn_prompt
