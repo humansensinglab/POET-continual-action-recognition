@@ -16,10 +16,10 @@ Towards this end, we propose POET:Prompt Offset Tuning. While existing prompt tu
 We contribute two new benchmarks for our new problem setting in human action recognition: (i) NTU RGB+D dataset for activity recognition, and (ii) SHREC-2017 dataset for hand gesture recognition. We find that POET consistently outperforms comprehensive benchmarks.
 
 ## :rocket: **Release Overview and Updates**
-- <i>More Coming Soon</i>
-- 🔲 POET code for Gesture Recognition benchmark on SHREC 2017, prompt offset tuning the DG-STA graph transformer backbone.
-- 🔲 I plan to release all 10+1 sets of few-shots for full reproducibility. 
-- ✅ POET code for our Activity Recognition benchmark on NTU RGB+D dataset, prompt offset tuning the CTR-GCN graph convolutional network backbone. Additionally, this release includes (i) the base step model checkpoints, (ii) few-shot data file, (iii) training and evaluation code.
+🔲 POET code for Gesture Recognition benchmark on SHREC 2017, prompt offset tuning the DG-STA graph transformer backbone.
+🔲 I plan to release all 10+1 sets of few-shots for full reproducibility. 
+✅ POET training and evaluation code for our Activity Recognition benchmark on NTU RGB+D dataset is now available. We prompt offset tuning the CTR-GCN graph convolutional network backbone. 
+✅ Additionally, this release includes (i) the base step model checkpoints, (ii) a few-shot data file
 - Note, additional code for adaptation of various baselines and ablations can be made available upon request. 
 
 ## Installation
