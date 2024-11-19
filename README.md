@@ -1,10 +1,10 @@
 # POET: Prompt Offset Tuning for Continual Human Action Adaptation
 
-## ECCV 2024 (Oral Presentation) | [Project Page](https://humansensinglab.github.io/POET-continual-action-recognition/)
+### ECCV 2024, Oral Presentation | [Project Page](https://humansensinglab.github.io/POET-continual-action-recognition/)
 
 **Authors: Prachi Garg, K J Joseph, Vineeth N Balasubramanian, Necati Cihan Camgoz, Chengde Wan, Kenrick Kin, Weiguang Si, Shugao Ma, and Fernando De La Torre**
 
-![poet_total_method](https://github.com/user-attachments/assets/d4281079-0849-4e73-85f5-d47b9112159e)
+![method_poet](https://github.com/user-attachments/assets/41c9716f-ee8e-47c2-9cb0-08afc1231f5e)
 
 ## Abstract
 As extended reality (XR) is redefining how users interact with computing devices, research in human action recognition is gaining prominence. Typically, models deployed on immersive computing devices are static and limited to their default set of classes.
