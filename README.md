@@ -106,7 +106,7 @@ work_dir/ntu60/csub/ctrgcn_prompt/
 ```
 
 ## Acknowledgements 
-We thank authors of [CTR-GCN](https://github.com/Uason-Chen/CTR-GCN) and [Learning to Prompt for Continual Learning](https://github.com/JH-LEE-KR/l2p-pytorch](https://github.com/google-research/l2p ) and their [Pytorch reimplementation](https://github.com/JH-LEE-KR/l2p-pytorch), their code was useful starting point for our project. 
+We thank authors of [CTR-GCN](https://github.com/Uason-Chen/CTR-GCN) and [Learning to Prompt for Continual Learning](https://github.com/JH-LEE-KR/l2p-pytorch](https://github.com/google-research/l2p ) and their [Pytorch reimplementation](https://github.com/JH-LEE-KR/l2p-pytorch). These were useful starting points for our project. 
 
 ## Citation
 
