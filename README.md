@@ -98,7 +98,7 @@ The per-run performance is in [this file](https://github.com/humansensinglab/POE
 
 ## Key Parameters
 
-:pushpin: Note, the parameters that are experiment-specific and stay fixed across different continual sessions are specified in [this](https://github.com/humansensinglab/POET-continual-action-recognition/blob/main/config/nturgbd-cross-subject/temp_24nov.yaml) config file. The arguments that are fixed for an experiment but dynamic across continual sessions E.g. class IDs are in the [argparser_continual.py](https://github.com/humansensinglab/POET-continual-action-recognition/blob/main/argparser_continual.py). 
+:pushpin: Note, the parameters that are experiment-specific and stay fixed across different continual sessions are specified in [this](https://github.com/humansensinglab/POET-continual-action-recognition/blob/main/config/nturgbd-cross-subject/temp_24nov.yaml) config file. The arguments that are dynamic across continual sessions (E.g. new class labels being added in a session) irrespective of the experiment are in the [argparser_continual.py](https://github.com/humansensinglab/POET-continual-action-recognition/blob/main/argparser_continual.py). 
 
 - `--k_shot`: Number of samples per class for few-shot learning (default: 5)
 - `--prompt_layer`: Which layer to add prompts (default: 1) 
