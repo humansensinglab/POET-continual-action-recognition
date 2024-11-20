@@ -50,10 +50,10 @@ git clone <repository-url>
 ## Dataset Preparation
 
 ```
-**TL;DR of our continual learning task** -
- - We divide the 60 daily action classes in NTU RGB+D skeleton action recognition dataset into 40 base classes and 20 incremental classes. We train base model with full supervision and initalize prompts.
- - We add 5 new classes to the model sequentially, over 4 continual user sessions, each class trained using only 5 training samples. In this, we update only expanded classifier and prompts, prompt keys and query adapter.
- - Our privacy-aware setting is rehearsal-free and does not store any previous class samples or exemplars.  
+### TL;DR of our continual learning task -
+ - We divide the 60 daily action classes in NTU RGB+D skeleton action recognition dataset into 40 base classes and 20 incremental classes (5x4). We train base model with full supervision and initalize prompts.
+ - We add 5 new classes to the model sequentially, over 4 continual user sessions, each class trained using only 5 training samples. We fine-tune only expanded classifier and prompt components (prompt pool, prompt keys and query adapter) freezing the rest of the network.
+ - Our privacy-aware setting is rehearsal-free and does not store any previous class samples or exemplars. Hence, POET is a prompt tuning only solution which acts like a plug and play into most graph convolutional and graph transformer architectures. 
 ```
 
 1. We had downloaded the NTU RGB+D 60 dataset and preprocessed it following the instructions in the original CTR-GCN repository. Sample few-shot data file is [here](https://uillinoisedu-my.sharepoint.com/:u:/g/personal/prachig3_illinois_edu/ERT-y01R2YFGtkzfWiC5jxUBJtBgaffAzBVm0ntH2fNpLQ?e=bXEoKs).
@@ -62,7 +62,7 @@ git clone <repository-url>
 
 ## Training
 
-The `POET_final_10run.sh` script performs incremental learning over 4 steps:
+The `POET_final_10run.sh` script performs incremental learning over 4 user sessions (steps):
 - Step 1: Classes 40-45
 - Step 2: Classes 45-50
 - Step 3: Classes 50-55
