@@ -16,7 +16,7 @@ We contribute two new benchmarks for our new problem setting in human action rec
 ## :rocket: **Release Overview and Updates**
 :white_large_square: Code for Gesture Recognition benchmark on SHREC 2017, DG-STA graph transformer backbone. 
 
-:white_check_mark: [Jan 3, 2025] Released our 10+1 sets of NTU RGB+D 60 preprocessed few-shots for full reproducibility [here](https://huggingface.co/datasets/prachigarg23/POET-NTU60-Continual-Few-Shot-Splits/tree/main). 
+:white_check_mark: [Jan 3, 2025] Released our 10+1 sets few-shots splits of NTU RGB+D 60 skeleton joints dataset for full reproducibility [here](https://huggingface.co/datasets/prachigarg23/POET-NTU60-Continual-Few-Shot-Splits/tree/main). 
 
 :white_check_mark: Released POET training and evaluation code for our Activity Recognition benchmark on NTU RGB+D dataset. We use the CTR-GCN backbone. 
 
