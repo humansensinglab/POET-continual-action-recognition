@@ -16,7 +16,7 @@ We contribute two new benchmarks for our new problem setting in human action rec
 ## :rocket: **Release Overview and Updates**
 :white_large_square: Code for Gesture Recognition benchmark on SHREC 2017, DG-STA graph transformer backbone. 
 
-:white_check_mark: [Jan 3, 2025] Released our 10+1 sets few-shots splits of NTU RGB+D 60 skeleton joints dataset for full reproducibility [here](https://huggingface.co/datasets/prachigarg23/POET-NTU60-Continual-Few-Shot-Splits/tree/main). 
+:white_check_mark: [Jan 3, 2025] Released our 10+1 sets of few-shots splits for NTU RGB+D 60 skeleton joints dataset for full reproducibility [here](https://huggingface.co/datasets/prachigarg23/POET-NTU60-Continual-Few-Shot-Splits/tree/main).
 
 :white_check_mark: Released POET training and evaluation code for our Activity Recognition benchmark on NTU RGB+D dataset. We use the CTR-GCN backbone. 
 
@@ -58,9 +58,10 @@ git clone <repository-url>
  - Our privacy-aware setting is rehearsal-free and does not store any previous class samples or exemplars. Hence, POET is a prompt tuning only solution which acts like a plug and play into most graph convolutional and graph transformer architectures. 
 ```
 
-1. We had downloaded the NTU RGB+D 60 dataset and preprocessed it following the instructions in the original CTR-GCN repository. Sample few-shot data file is [here](https://uillinoisedu-my.sharepoint.com/:u:/g/personal/prachig3_illinois_edu/ERT-y01R2YFGtkzfWiC5jxUBJtBgaffAzBVm0ntH2fNpLQ?e=bXEoKs).
+1. We had downloaded the NTU RGB+D 60 dataset and preprocessed it following the instructions in the original CTR-GCN repository. All our few-shot data splits are available here [here](https://huggingface.co/datasets/prachigarg23/POET-NTU60-Continual-Few-Shot-Splits/tree/main).
+   <[here](https://uillinoisedu-my.sharepoint.com/:u:/g/personal/prachig3_illinois_edu/ERT-y01R2YFGtkzfWiC5jxUBJtBgaffAzBVm0ntH2fNpLQ?e=bXEoKs).?
 
-2. Provide path to data files inside [`temp_24nov.yaml`](https://github.com/humansensinglab/POET-continual-action-recognition/blob/main/config/nturgbd-cross-subject/temp_24nov.yaml) -> feeder -> `data_path` and `few_shot_data_file` variables. 
+4. Provide path to data files inside [`temp_24nov.yaml`](https://github.com/humansensinglab/POET-continual-action-recognition/blob/main/config/nturgbd-cross-subject/temp_24nov.yaml) -> feeder -> `data_path` and `few_shot_data_file` variables. 
 
 ## Training
 
